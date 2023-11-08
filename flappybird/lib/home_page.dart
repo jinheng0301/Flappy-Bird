@@ -176,7 +176,7 @@ class _HomePageState extends State<HomePage> {
     for (int i = 0; i < barrierX3.length; i++) {
       if (barrierX3[i] <= birdWidth &&
           barrierX3[i] + barrierWidth3 >= -birdWidth &&
-          (birdY <= -1 + barrierHeight[i][0] ||
+          (birdY <= -1 + barrierHeight3[i][0] ||
               birdY + birdHeight >= 1 - barrierHeight3[i][1])) {
         return true;
       }
@@ -254,28 +254,28 @@ class _HomePageState extends State<HomePage> {
                       MyBarrier(
                         isThisBottomBarrier: false,
                         barrierX: barrierX2[0],
-                        barrierWidth: barrierWidth,
+                        barrierWidth: barrierWidth2,
                         barrierHeight: barrierHeight2[0][0],
                       ),
 
                       MyBarrier(
                         isThisBottomBarrier: true,
                         barrierX: barrierX2[0],
-                        barrierWidth: barrierWidth,
+                        barrierWidth: barrierWidth2,
                         barrierHeight: barrierHeight2[0][1],
                       ),
 
                       MyBarrier(
                         isThisBottomBarrier: false,
                         barrierX: barrierX2[1],
-                        barrierWidth: barrierWidth,
+                        barrierWidth: barrierWidth2,
                         barrierHeight: barrierHeight2[1][0],
                       ),
 
                       MyBarrier(
                         isThisBottomBarrier: true,
                         barrierX: barrierX2[1],
-                        barrierWidth: barrierWidth,
+                        barrierWidth: barrierWidth2,
                         barrierHeight: barrierHeight2[1][1],
                       ),
 
@@ -285,28 +285,28 @@ class _HomePageState extends State<HomePage> {
                       MyBarrier(
                         isThisBottomBarrier: false,
                         barrierX: barrierX3[0],
-                        barrierWidth: barrierWidth,
+                        barrierWidth: barrierWidth3,
                         barrierHeight: barrierHeight3[0][0],
                       ),
 
                       MyBarrier(
                         isThisBottomBarrier: true,
                         barrierX: barrierX3[0],
-                        barrierWidth: barrierWidth,
+                        barrierWidth: barrierWidth3,
                         barrierHeight: barrierHeight3[0][1],
                       ),
 
                       MyBarrier(
                         isThisBottomBarrier: false,
                         barrierX: barrierX3[1],
-                        barrierWidth: barrierWidth,
+                        barrierWidth: barrierWidth3,
                         barrierHeight: barrierHeight3[1][0],
                       ),
 
                       MyBarrier(
                         isThisBottomBarrier: true,
                         barrierX: barrierX3[1],
-                        barrierWidth: barrierWidth,
+                        barrierWidth: barrierWidth3,
                         barrierHeight: barrierHeight3[1][1],
                       ),
                     ],
