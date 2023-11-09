@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   double height = 0;
   double time = 0;
   double gravity = -4.9; // how strong the gravity is
-  double velocity = 3.0; // how strong the jump is
+  double velocity = 2.0; // how strong the jump is
   double birdWidth = 0.1; // out of 2, 2 being the entire width of the screen
   double birdHeight = 0.1; // out of 2, 2 being the entire height of the screen
 
@@ -34,18 +34,25 @@ class _HomePageState extends State<HomePage> {
     [0.4, 0.6],
   ];
 
-  List<double> barrierX2 = [4, 4 + 1.5];
+  static List<double> barrierX2 = [5, 5 + 1.5];
   static double barrierWidth2 = 0.5;
   List<List<double>> barrierHeight2 = [
     [0.7, 0.3],
     [0.3, 0.7],
   ];
 
-  List<double> barrierX3 = [6, 6 + 1.5];
+  static List<double> barrierX3 = [8, 8 + 1.5];
   static double barrierWidth3 = 0.5;
   List<List<double>> barrierHeight3 = [
     [0.2, 0.8],
     [0.8, 0.2],
+  ];
+
+  static List<double> barrierX4 = [11, 11 + 1.5];
+  static double barrierWidth4 = 0.5;
+  List<List<double>> barrierHeight4 = [
+    [0.8, 0.2],
+    [0.1, 0.9],
   ];
 
   void startGame() {
@@ -76,6 +83,10 @@ class _HomePageState extends State<HomePage> {
           barrierX3[i] -= 0.01; // Adjust the value as needed
         }
 
+        for (int i = 0; i < barrierX4.length; i++) {
+          barrierX4[i] -= 0.01; // Adjust the value as needed
+        }
+
         // check if bird is dead
         if (birdIsDead()) {
           timer.cancel();
@@ -89,8 +100,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _showDialog() {
-    showDialog(
+  void _showDialog() async {
+    await showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) {
@@ -134,8 +145,9 @@ class _HomePageState extends State<HomePage> {
       time = 0;
       initialPosition = birdY;
       barrierX = [2, 2 + 1.5];
-      barrierX2 = [4, 4 + 1.5];
-      barrierX3 = [6, 6 + 1.5];
+      barrierX2 = [5, 5 + 1.5];
+      barrierX3 = [8, 8 + 1.5];
+      barrierX4 = [11, 11 + 1.5];
     });
   }
 
@@ -178,6 +190,15 @@ class _HomePageState extends State<HomePage> {
           barrierX3[i] + barrierWidth3 >= -birdWidth &&
           (birdY <= -1 + barrierHeight3[i][0] ||
               birdY + birdHeight >= 1 - barrierHeight3[i][1])) {
+        return true;
+      }
+    }
+
+    for (int i = 0; i < barrierX4.length; i++) {
+      if (barrierX4[i] <= birdWidth &&
+          barrierX4[i] + barrierWidth4 >= -birdWidth &&
+          (birdY <= -1 + barrierHeight4[i][0] ||
+              birdY + birdHeight >= 1 - barrierHeight4[i][1])) {
         return true;
       }
     }
@@ -309,6 +330,37 @@ class _HomePageState extends State<HomePage> {
                         barrierWidth: barrierWidth3,
                         barrierHeight: barrierHeight3[1][1],
                       ),
+
+                      ////////////////////////////////////////////////////////////////////////////////
+
+                      // Render additional barriers
+                      MyBarrier(
+                        isThisBottomBarrier: false,
+                        barrierX: barrierX4[0],
+                        barrierWidth: barrierWidth4,
+                        barrierHeight: barrierHeight4[0][0],
+                      ),
+
+                      MyBarrier(
+                        isThisBottomBarrier: true,
+                        barrierX: barrierX4[0],
+                        barrierWidth: barrierWidth4,
+                        barrierHeight: barrierHeight4[0][1],
+                      ),
+
+                      MyBarrier(
+                        isThisBottomBarrier: false,
+                        barrierX: barrierX4[1],
+                        barrierWidth: barrierWidth4,
+                        barrierHeight: barrierHeight4[1][0],
+                      ),
+
+                      MyBarrier(
+                        isThisBottomBarrier: true,
+                        barrierX: barrierX4[1],
+                        barrierWidth: barrierWidth4,
+                        barrierHeight: barrierHeight4[1][1],
+                      ),
                     ],
                   ),
                 ),
@@ -316,7 +368,22 @@ class _HomePageState extends State<HomePage> {
             ),
             Expanded(
               child: Container(
-                color: Colors.brown,
+                color: Colors.brown[700],
+                // child: Column(
+                //   children: [
+                //     SizedBox(
+                //       height: 30,
+                //     ),
+                //     Text(
+                //       'CREATED BY JINHENG',
+                //       style: TextStyle(
+                //         fontSize: 20,
+                //         fontWeight: FontWeight.normal,
+                //         color: Colors.black,
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ),
             ),
           ],
