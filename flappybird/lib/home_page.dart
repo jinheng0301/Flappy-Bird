@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:flappybird/barriers.dart';
-import 'package:flappybird/my_bird.dart';
+import 'package:flappybird/widgets/barriers.dart';
+import 'package:flappybird/widgets/my_bird.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -208,6 +208,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentDateTime = DateTime.now();
+
     return GestureDetector(
       onTap: gameHasStarted ? jump : startGame,
       child: Scaffold(
@@ -369,21 +371,39 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Container(
                 color: Colors.brown[700],
-                // child: Column(
-                //   children: [
-                //     SizedBox(
-                //       height: 30,
-                //     ),
-                //     Text(
-                //       'CREATED BY JINHENG',
-                //       style: TextStyle(
-                //         fontSize: 20,
-                //         fontWeight: FontWeight.normal,
-                //         color: Colors.black,
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            'CREATED BY JINHENG',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            currentDateTime.toString(),
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
